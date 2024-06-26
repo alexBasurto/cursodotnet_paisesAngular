@@ -8,13 +8,13 @@
       class="form-select"
       [(ngModel)]="divisaSeleccionada"
       required
-      #comidas="ngModel"
+      #monedas="ngModel"
     >
       <option *ngFor="let divisa of divisas" [value]="divisa.code">
         {{ divisa.code + " - " + divisa.name }}
       </option>
     </select>
-    <div *ngIf="comidas.invalid && comidas.touched" class="text-danger">
+    <div *ngIf="monedas.invalid && monedas.touched" class="text-danger">
       La categoría es obligatoria
     </div>
   </div>
@@ -37,17 +37,17 @@
 >
     <ng-template pTemplate="header">
         <tr>
-            <th style="width:25%">Name</th>
-            <th style="width:25%">Country</th>
-            <th style="width:25%">Company</th>
-            <th style="width:25%">Representative</th>
+            <th style="width:25%">Common name</th>
+            <th style="width:25%">Capital</th>
+            <th style="width:25%">Flag</th>
+            <th style="width:25%">Google Maps</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-pais>
         <tr>
             <td>{{ pais.name.common }}</td>
-            <td>{{ pais.name.common }}</td>
-            <td>{{ pais.name.common }}</td>
+            <td>{{ pais.capital }}</td>
+            <td><img [src]=pais.flags.png alt="Flag" style="width: 20px;"></td>
             <td>{{ pais.name.common }}</td>
         </tr>
     </ng-template>

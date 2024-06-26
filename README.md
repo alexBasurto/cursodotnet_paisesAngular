@@ -36,11 +36,11 @@ o Distribuiremos los contenidos en dos columnas:
 • Desarrollaremos un formulario con un input para introducir una moneda.
 • La moneda será de introducción obligatoria. Si nos desplazamos al input y nos vamos
 sin introducir localidad aparecerá un mensaje notificando que la moneda es de
-introducción obligatoria.
-• Al hacer el submit buscaremos los resultados de esa moneda en la url:
+introducción obligatoria. OK
+• Al hacer el submit buscaremos los resultados de esa moneda en la url: OK
 o https://restcountries.com/v3.1/currency/euro, siendo euro la moneda
-introducida en el formulario.
-▪ Columna derecha
+introducida en el formulario. OK
+▪ Columna derecha 
 • Desarrollar una tabla en la que aparecerán los resultados de la búsqueda. Por cada
 país visualizaremos el nombre, la capital, su bandera en una imagen y un enlace a
 Google maps.
