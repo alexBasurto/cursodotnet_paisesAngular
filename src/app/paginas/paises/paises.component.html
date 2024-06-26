@@ -11,6 +11,14 @@
       required
         #divisa="ngModel"
     />
+    <!-- <select id="categoria" name="categoria" class="form-select" [(ngModel)]="divisaSeleccionada" required
+        #comidas="ngModel">
+        <option *ngFor="let divisa of divisas" [value]="divisa.strCategory">{{divisa.strCategory}}
+        " [value]="divisa.strCategory">{{divisa.strCategory}}
+        </option>
+      </select> -->
+
+
     <div *ngIf="divisa.invalid && divisa.touched" class="text-danger">
       Es obligatorio indicar una divisa.
     </div>

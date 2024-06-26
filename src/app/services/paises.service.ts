@@ -13,4 +13,8 @@ export class PaisesService {
     return this.http.get<IPais[]>(`https://restcountries.com/v3.1/currency/${moneda}`);
   }
 
+  getDivisas() :Observable<IPais[]> {
+    return this.http.get<IPais[]>('https://restcountries.com/v3.1/all');
+  }
+
 }
