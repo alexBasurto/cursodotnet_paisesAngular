@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { PaisesComponent } from './paises/paises.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
+import { TableModule } from 'primeng/table';
 
 
 
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    TableModule
   ]
 })
 export class PaginasModule { }

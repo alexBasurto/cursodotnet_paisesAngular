@@ -1,68 +1,54 @@
 <h1>Países por moneda</h1>
 <form #formulario="ngForm" (submit)="getPaises()">
   <div class="form-group">
-    <label for="divisa">Introduzca una divisa:</label>
-    <input
-      type="text"
-      class="form-control"
+    <label for="divisa">Seleccione divisa:</label>
+    <select
       id="divisa"
       name="divisa"
+      class="form-select"
       [(ngModel)]="divisaSeleccionada"
       required
-        #divisa="ngModel"
-    />
-    <!-- <select id="categoria" name="categoria" class="form-select" [(ngModel)]="divisaSeleccionada" required
-        #comidas="ngModel">
-        <option *ngFor="let divisa of divisas" [value]="divisa.strCategory">{{divisa.strCategory}}
-        " [value]="divisa.strCategory">{{divisa.strCategory}}
-        </option>
-      </select> -->
-
-
-    <div *ngIf="divisa.invalid && divisa.touched" class="text-danger">
-      Es obligatorio indicar una divisa.
+      #comidas="ngModel"
+    >
+      <option *ngFor="let divisa of divisas" [value]="divisa.code">
+        {{ divisa.code + " - " + divisa.name }}
+      </option>
+    </select>
+    <div *ngIf="comidas.invalid && comidas.touched" class="text-danger">
+      La categoría es obligatoria
     </div>
   </div>
+
   <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">
     Aceptar
   </button>
 </form>
 
+<div *ngIf="mostrarError" class="alert alert-danger" role="alert">
+  No se ha podido acceder a la información de países
+</div>
 
-<!--   
-  <p-table #dt1 [value]="recetario.meals" [paginator]="true" [rows]="10"
-  [globalFilterFields]="['strMeal']">
-  <ng-template pTemplate="caption">
-    <div class="flex">
-        <button pButton label="Quitar filtro" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
-        <span class="p-input-icon-left ml-auto">
-            <i class="pi pi-search"></i>
-            <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Introduce texto" />
-        </span>
-    </div>
-  </ng-template>
-  <ng-template pTemplate="header">
-      <tr>
-          <th>Foto</th>
-          <th pSortableColumn="strMeal"><p-sortIcon field="strMeal"></p-sortIcon>Título</th>
-      </tr>
-      <tr>
-        <th></th>
-        <th>
-            <p-columnFilter type="text" field="strMeal"></p-columnFilter>
-        </th>
-      </tr>
-  </ng-template>
-  
-  <ng-template pTemplate="body" let-receta>
-    <tr>
-      <td><img class="foto" [src]="receta.strMealThumb" /></td>
-      <td>{{ receta.strMeal }}</td>
-    </tr>
-  </ng-template>
-  </p-table>
-  
-  <div class="alert alert-danger" role="alert" *ngIf="mostrarError">
-  No se ha podido acceder a la información de recetas
-  </div>
-   -->
+<p-table
+    [value]="paises"
+    [paginator]="true"
+    [rows]="5"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[5, 10, 20]"
+>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:25%">Name</th>
+            <th style="width:25%">Country</th>
+            <th style="width:25%">Company</th>
+            <th style="width:25%">Representative</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pais>
+        <tr>
+            <td>{{ pais.name.common }}</td>
+            <td>{{ pais.name.common }}</td>
+            <td>{{ pais.name.common }}</td>
+            <td>{{ pais.name.common }}</td>
+        </tr>
+    </ng-template>
+</p-table>
