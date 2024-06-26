@@ -1,54 +1,67 @@
-<h1>Países por moneda</h1>
-<form #formulario="ngForm" (submit)="getPaises()">
-  <div class="form-group">
-    <label for="divisa">Seleccione divisa:</label>
-    <select
-      id="divisa"
-      name="divisa"
-      class="form-select"
-      [(ngModel)]="divisaSeleccionada"
-      required
-      #monedas="ngModel"
-    >
-      <option *ngFor="let divisa of divisas" [value]="divisa.code">
-        {{ divisa.code + " - " + divisa.name }}
-      </option>
-    </select>
-    <div *ngIf="monedas.invalid && monedas.touched" class="text-danger">
-      La categoría es obligatoria
-    </div>
+<div class="container">
+  <h1>Países por moneda</h1>
+  <div class="row">
+  <div class="col-md-3 col-lg-2">
+    <form #formulario="ngForm" (submit)="getPaises()">
+      <div class="form-group">
+        <label for="divisa">Seleccione divisa:</label>
+        <select
+          id="divisa"
+          name="divisa"
+          class="form-control"
+          [(ngModel)]="divisaSeleccionada"
+          required
+          #monedas="ngModel"
+        >
+          <option *ngFor="let divisa of divisas" [value]="divisa.code">
+            {{ divisa.code + " - " + divisa.name }}
+          </option>
+        </select>
+        <div *ngIf="monedas.invalid && monedas.touched" class="text-danger">
+          La categoría es obligatoria
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary mt-4 btn-sm"
+        [disabled]="formulario.invalid"
+      >
+        Aceptar
+      </button>
+    </form>
   </div>
+  <div class="col-md-9 col-lg-10">
+    <div *ngIf="mostrarError" class="alert alert-danger" role="alert">
+      No se ha podido acceder a la información de países
+    </div>
 
-  <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">
-    Aceptar
-  </button>
-</form>
+    <p-table
+      [value]="paises"
+      [paginator]="true"
+      [rows]="5"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      [tableStyleClass]="'table table-striped table-hover'"
 
-<div *ngIf="mostrarError" class="alert alert-danger" role="alert">
-  No se ha podido acceder a la información de países
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 25%">Common name</th>
+          <th style="width: 25%">Capital</th>
+          <th style="width: 25%">Flag</th>
+          <th style="width: 25%">Google Maps</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-pais>
+        <tr>
+          <th>{{ pais.name.common }}</th>
+          <td>{{ pais.capital }}</td>
+          <td><img [src]="pais.flags.png" alt="Flag" style="width: 20px" /></td>
+          <td><a href="{{pais.maps.googleMaps}}" target="_blank"><button class="btn btn-outline-primary btn-sm">Ver en Maps</button></a></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  </div>
 </div>
-
-<p-table
-    [value]="paises"
-    [paginator]="true"
-    [rows]="5"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    [rowsPerPageOptions]="[5, 10, 20]"
->
-    <ng-template pTemplate="header">
-        <tr>
-            <th style="width:25%">Common name</th>
-            <th style="width:25%">Capital</th>
-            <th style="width:25%">Flag</th>
-            <th style="width:25%">Google Maps</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-pais>
-        <tr>
-            <td>{{ pais.name.common }}</td>
-            <td>{{ pais.capital }}</td>
-            <td><img [src]=pais.flags.png alt="Flag" style="width: 20px;"></td>
-            <td>{{ pais.name.common }}</td>
-        </tr>
-    </ng-template>
-</p-table>
